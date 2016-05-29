@@ -39,7 +39,7 @@ object loanCalc {
         var (payTotalCapital, payTotalInterest, leftCapital) = (0d, 0d, 0d)
 
         println("payment detail:")
-        println("%10s%10s%20s%20s%20s%20s%20s%20s".format("year", "month", "payEveryMonth", "monthInterest", "monthCapital", "payTotalInterest", "payTotalCapital", "leftCapital" ))
+        println("%10s%10s%15s%15s%15s%15s%15s%15s%15s".format("year", "month", "payEveryMonth", "monthInterest", "monthCapital", "payTotalInterest", "payTotalCapital", "leftCapital", "totalCash"))
 
         for ( i <- 1 to loanTime ) {
             val monthInterest = getMonthInterest(monthRate, funds, loanTime, i)
@@ -53,7 +53,8 @@ object loanCalc {
             //println(s"month_$i\t$monthInterest\t$monthCapital\t$payTotalInterest\t$payTotalCapital\t$leftCapital")
             var year_num = if ( i % 12 == 0) i / 12 else i / 12 + 1
             var month_num = if ( i % 12 == 0 ) 12 else i % 12
-            println("%10s%10s%20.3f%20.3f%20.3f%20.3f%20.3f%20.3f".format("year_" + year_num, "month_" + month_num, monthInterest + monthCapital, monthInterest, monthCapital, payTotalInterest, payTotalCapital, leftCapital) )
+            println("%10s%10s%15.3f%15.3f%15.3f%15.3f%15.3f%15.3f%15.3f".format("year_" + year_num, "month_" + month_num, monthInterest + monthCapital, monthInterest, monthCapital, payTotalInterest, payTotalCapital, leftCapital, payTotalInterest + payTotalCapital + leftCapital) )
+            if( i % 12 == 0) println("="* 150)
         }
     }
 
@@ -62,7 +63,7 @@ object loanCalc {
     def payDetail2(monthRate:Double, funds:Double, loanTime:Int) {
         var (payTotalCapital, payTotalInterest, leftCapital) = (0d, 0d, 0d)
         println("payment detail:")
-        println("%10s%10s%20s%20s%20s%20s%20s%20s".format("year", "month", "payEveryMonth", "monthInterest", "monthCapital", "payTotalInterest", "payTotalCapital", "leftCapital" ))
+        println("%10s%10s%15s%15s%15s%15s%15s%15s%15s".format("year", "month", "payEveryMonth", "monthInterest", "monthCapital", "payTotalInterest", "payTotalCapital", "leftCapital", "totalCash" ))
     
         var monthCapital = funds / loanTime
     
@@ -76,8 +77,10 @@ object loanCalc {
     
             var year_num = if ( i % 12 == 0) i / 12 else i / 12 + 1
             var month_num = if ( i % 12 == 0 ) 12 else i % 12
-            println("%10s%10s%20.3f%20.3f%20.3f%20.3f%20.3f%20.3f".format("year_" + year_num, "month_" + month_num, monthInterest + monthCapital, monthInterest, monthCapital, payTotalInterest, payTotalCapital, leftCapital) )
+            println("%10s%10s%15.3f%15.3f%15.3f%15.3f%15.3f%15.3f%15.3f".format("year_" + year_num, "month_" + month_num, monthInterest + monthCapital, monthInterest, monthCapital, payTotalInterest, payTotalCapital, leftCapital, payTotalInterest + payTotalCapital + leftCapital) )
+            //println("%10s%10s%20.3f%20.3f%20.3f%20.3f%20.3f%20.3f".format("year_" + year_num, "month_" + month_num, monthInterest + monthCapital, monthInterest, monthCapital, payTotalInterest, payTotalCapital, leftCapital) )
     
+            if( i % 12 == 0) println("="* 150)
         }
     }
 
